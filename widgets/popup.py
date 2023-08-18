@@ -8,7 +8,7 @@ import PySide6.QtGui as QtG
 
 class Initializer(QtW.QFrame):
     
-    def __init__(self, *args, **kargs) -> None:
+    def __init__(self, root=None, *args, **kargs) -> None:
         super(Initializer, self).__init__(*args, **kargs)
         
         # main variables
@@ -21,6 +21,8 @@ class Initializer(QtW.QFrame):
         self.anim_time = 6
         self.counter = 0
         self.done = False
+
+        self.root = root
         
         # size
         self.setFixedSize(QtC.QSize(self.w,self.h))
@@ -72,5 +74,10 @@ class Initializer(QtW.QFrame):
         self.server.start()
     
     def _request_log(self, response) -> None:
-        print(f'Response status: {response.status_code}')
-        self.done = True
+        status = response.status_code
+        print(f'Response status: {status}')
+        if status == 200:
+            self.done = True
+        else:
+            print(f'LOG: {response.json()}')
+            self.root.close()

@@ -27,7 +27,7 @@ class TumorDetectorDemo(QMainWindow):
         
         # multi windows
         self.stk_layout = QStackedLayout()
-        for frame in (Initializer(), MainScreen(root=self)):
+        for frame in (Initializer(root=self), MainScreen(root=self)):
             self.stk_layout.addWidget(frame)
         self.setFixedSize(self.stk_layout.currentWidget().size())
         
