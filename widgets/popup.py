@@ -13,7 +13,7 @@ class Initializer(QtW.QFrame):
         
         # main variables
         BG_COLOR = '#D9D9D9'
-        ICON_COLOR = '#0097B2'
+        ICON_COLOR = '#009494'
         
         self.w = 500
         self.h = 300
@@ -37,7 +37,7 @@ class Initializer(QtW.QFrame):
         
         self.title = QtW.QLabel()
         self.title.setText('Tumor Detector')
-        self.title.setStyleSheet('color: #009494;')
+        self.title.setStyleSheet(f'color: {ICON_COLOR};')
         font = QtG.QFont()
         font.setBold(True)
         font.setPixelSize(15)
