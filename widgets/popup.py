@@ -1,5 +1,5 @@
 # imports
-from widgets.extras import LoadingIcon
+from widgets.extras import LoadingIcon, ServerAPI
 
 import PySide6.QtWidgets as QtW
 import PySide6.QtCore as QtC
@@ -20,6 +20,7 @@ class Initializer(QtW.QFrame):
         
         self.anim_time = 6
         self.counter = 0
+        self.done = False
         
         # size
         self.setFixedSize(QtC.QSize(self.w,self.h))
@@ -29,6 +30,10 @@ class Initializer(QtW.QFrame):
         palette = self.palette()
         palette.setColor(QtG.QPalette.ColorRole.Window, QtG.QColor(BG_COLOR))
         self.setPalette(palette)
+
+        # server
+        self.server = ServerAPI(route='https://jsonplaceholder.typicode.com/posts') # only test!
+        self.server.result_signal.connect(self._request_log)
         
         # layout
         self.brain_logo = QtW.QLabel()
@@ -54,11 +59,18 @@ class Initializer(QtW.QFrame):
         self.main_layout.addWidget(self.load)
         
         self.setLayout(self.main_layout)
-        print('Initializing..', end='\r')
+        print('Initializing..')
+        self._start_request()
     
-    def init_timer(self) -> bool:
-        if self.counter == self.anim_time:
+    def initialization(self) -> bool:
+        if self.done:
             print('Initialization Complete!')
             return True
-        self.counter += 1
         return False
+    
+    def _start_request(self) -> None:
+        self.server.start()
+    
+    def _request_log(self, response) -> None:
+        print(f'Response status: {response.status_code}')
+        self.done = True

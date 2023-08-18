@@ -59,7 +59,7 @@ class TumorDetectorDemo(QMainWindow):
         self.show()
     
     def _update_screen(self) -> None:
-        if self.stk_layout.currentWidget().init_timer():
+        if self.stk_layout.currentWidget().initialization():
             self.stk_layout.setCurrentIndex(1)
             self.setFixedSize(self.stk_layout.currentWidget().size())
             self._center_screen()
