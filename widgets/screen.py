@@ -187,12 +187,12 @@ class OptionFrame(QtW.QFrame):
         font.setPointSize(10)
         font.setItalic(True)
         self.list_box_title.setFont(font)
-        self.list_box_title.setText('Choose the file (.NII)')
+        self.list_box_title.setText('Choose a register')
 
         self.list_box = ListBox()
-        self.list_box.addItem('patient_01_12082023.nii')
-        self.list_box.addItem('patient_02_12082023.nii')
-        self.list_box.addItem('patient_03_12082023.nii')
+        self.list_box.addItem('patient_001')
+        self.list_box.addItem('patient_002')
+        self.list_box.addItem('patient_003')
 
         self.apply_button = CustomButton(
             width=100, 
@@ -201,7 +201,7 @@ class OptionFrame(QtW.QFrame):
             hover_color='#00A3A3', 
             clicked_color='#009494', 
             action=self._apply_file_func, 
-            text='apply file'
+            text='apply'
         )
 
         self.info = QtW.QFrame()
