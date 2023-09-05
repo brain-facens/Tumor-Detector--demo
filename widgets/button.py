@@ -151,3 +151,31 @@ class CustomButton(QtW.QToolButton):
         painter.drawText(cx + 10, cy + 5, 100, 30, 1, self.txt)
 
         painter.end()
+
+
+class SliderWithLabels(QtW.QWidget):
+    def __init__(self, init_value: float, min: int = 0, max: int = 100):
+        super(SliderWithLabels, self).__init__()
+
+        layout = QtW.QHBoxLayout()
+
+        self.slider = QtW.QSlider()
+        self.slider.setOrientation(QtC.Qt.Orientation.Horizontal)
+        self.slider.setMinimum(min)
+        self.slider.setMaximum(max)
+        if isinstance(init_value, float):
+            self.slider.setValue(int(init_value * max))
+            self.label_min = QtW.QLabel('0.0')
+            self.label_max = QtW.QLabel('1.0')
+        else:
+            self.slider.setValue(init_value)
+            self.label_min = QtW.QLabel(str(min))
+            self.label_max = QtW.QLabel(str(max))
+        self.slider.setTickInterval(1)
+        self.slider.setTickPosition(QtW.QSlider.TickPosition.TicksBelow)
+
+        layout.addWidget(self.label_min)
+        layout.addWidget(self.slider)
+        layout.addWidget(self.label_max)
+
+        self.setLayout(layout)
