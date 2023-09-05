@@ -40,6 +40,8 @@ ENV QML2_IMPORT_PATH /opt/qt/${QT}/gcc_64/qml/
 
 # PySide6 package
 RUN pip install PySide6==${QT}
+RUN pip install nibabel==5.1.0
+RUN pip install Pillow==10.0.0
 
 # Set the working directory for the application
 WORKDIR /app

@@ -88,3 +88,94 @@ class MenuButton(QtW.QToolButton):
         painter.drawPath(path)
         
         painter.end()
+
+
+class CustomButton(QtW.QToolButton):
+
+    def __init__(
+        self, 
+        width: int, 
+        height: int, 
+        color: str, 
+        hover_color: str, 
+        clicked_color: str, 
+        action: object, 
+        text: str, 
+        *args, 
+        **kargs
+        ) -> None:
+        super(CustomButton, self).__init__(*args, **kargs)
+
+        # main variables
+        self.color = QtG.QColor(color)
+        self.hcolor = QtG.QColor(hover_color)
+        self.ccolor = QtG.QColor(clicked_color)
+
+        self.w = width
+        self.h = height
+        self.txt = text
+
+        self.setFixedSize(QtC.QSize(width,height))
+
+        # action
+        self.clicked.connect(action)
+
+    def paintEvent(self, arg__1: QtG.QPaintEvent) -> None:
+        
+        # initializing painter
+        painter = QtG.QPainter(self)
+        if not painter.isActive():
+            painter.begin(self)
+        painter.setRenderHint(QtG.QPainter.RenderHint.Antialiasing)
+        
+        # button
+        painter.setPen(QtC.Qt.PenStyle.NoPen)
+
+        rect = self.rect()
+        cx = rect.x()
+        cy = rect.y()
+
+        if  self.underMouse():
+            if self.isDown():
+                painter.setBrush(self.ccolor)
+            else:
+                painter.setBrush(self.hcolor)
+        else:
+            painter.setBrush(self.color)
+        painter.drawRoundedRect(rect, 10, 10)
+        
+        # text
+        pen = QtG.QPen()
+        pen.setColor(QtG.QColor('white'))
+        painter.setPen(pen)
+        painter.drawText(cx + 10, cy + 5, 100, 30, 1, self.txt)
+
+        painter.end()
+
+
+class SliderWithLabels(QtW.QWidget):
+    def __init__(self, init_value: float, min: int = 0, max: int = 100):
+        super(SliderWithLabels, self).__init__()
+
+        layout = QtW.QHBoxLayout()
+
+        self.slider = QtW.QSlider()
+        self.slider.setOrientation(QtC.Qt.Orientation.Horizontal)
+        self.slider.setMinimum(min)
+        self.slider.setMaximum(max)
+        if isinstance(init_value, float):
+            self.slider.setValue(int(init_value * max))
+            self.label_min = QtW.QLabel('0.0')
+            self.label_max = QtW.QLabel('1.0')
+        else:
+            self.slider.setValue(init_value)
+            self.label_min = QtW.QLabel(str(min))
+            self.label_max = QtW.QLabel(str(max))
+        self.slider.setTickInterval(1)
+        self.slider.setTickPosition(QtW.QSlider.TickPosition.TicksBelow)
+
+        layout.addWidget(self.label_min)
+        layout.addWidget(self.slider)
+        layout.addWidget(self.label_max)
+
+        self.setLayout(layout)
