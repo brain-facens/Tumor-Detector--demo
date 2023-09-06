@@ -21,8 +21,6 @@ class Initializer(QtW.QFrame):
         self.w = 500
         self.h = 300
         
-        self.anim_time = 6
-        self.counter = 0
         self.done = False
 
         self.root = root
