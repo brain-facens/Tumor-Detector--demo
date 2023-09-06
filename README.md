@@ -1,6 +1,8 @@
 # Tumor-Detector-demo
 
 ---
+![](assets/tumor-detector.gif)
+
 ## Requerimentos
 - [Docker](https://www.docker.com)
 - [Git](https://git-scm.com)
