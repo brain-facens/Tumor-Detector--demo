@@ -3,8 +3,6 @@ import PySide6.QtWidgets as QtW
 import PySide6.QtCore as QtC
 import PySide6.QtGui as QtG
 
-import requests
-
 
 class LoadingIcon(QtW.QLabel):
     
@@ -52,31 +50,3 @@ class LoadingIcon(QtW.QLabel):
     
     def _restartAnimation(self):
         self.anim.start()
-
-
-class ServerAPI(QtC.QThread):
-
-    result_signal = QtC.Signal(requests.Response)
-
-    def __init__(
-        self, 
-        route: str = '', 
-        rbody: dict = None, 
-        *args, 
-        **kargs
-        ) -> None:
-        super(ServerAPI, self).__init__(*args, **kargs)
-
-        # main variables
-        self.base_url = ''
-        self.url = f'{self.base_url}{route}'
-
-        self.body = rbody
-    
-    def run(self) -> None:
-        
-        if self.body:
-            response = requests.post(url=self.url, json=self.body)
-        else:
-            response = requests.get(url=self.url)
-        self.result_signal.emit(response)
