@@ -1,9 +1,8 @@
 # Tumor-Detector-demo
 
 ---
-<div align="center">
-  <img src="assets/tumor-detector.gif" height=300px>
-</div>
+https://github.com/brain-facens/Tumor-Detector--demo/assets/67404745/ee744e6a-da8f-4ebb-ac73-def849651af2
+
 
 ## Requerimentos
 - [Docker](https://www.docker.com)
