@@ -1,8 +1,7 @@
 # Tumor-Detector-demo
 
 ---
-https://github.com/brain-facens/Tumor-Detector--demo/assets/67404745/ee744e6a-da8f-4ebb-ac73-def849651af2
-
+https://github.com/brain-facens/Tumor-Detector--demo/assets/67404745/937b5da1-8a2d-4565-898f-9d8d68fbc2cf
 
 ## Requerimentos
 - [Docker](https://www.docker.com)
