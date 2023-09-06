@@ -48,3 +48,6 @@ WORKDIR /app
 
 # Copy the project files into the image
 COPY . .
+
+# runnning project
+CMD ["python", "main.py"]
