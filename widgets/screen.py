@@ -19,7 +19,7 @@ class MainScreen(QtW.QFrame):
         # main variables
         self.w = 1450
         self.h = 750
-        hmenu = int(self.h * 0.05)
+        hmenu = int(self.h * 0.075)
         
         # size
         self.setFixedSize(QtC.QSize(self.w,self.h))
@@ -62,6 +62,11 @@ class MenuBar(QtW.QFrame):
         palette.setColor(QtG.QPalette.ColorRole.Window, QtG.QColor(BG_COLOR))
         self.setPalette(palette)
         
+        # logo
+        self.brain_logo = QtW.QLabel()
+        self.png = QtG.QPixmap('/app/assets/brain.png').scaled(QtC.QSize(70,70))
+        self.brain_logo.setPixmap(self.png)
+        
         # buttons
         self.exit_button = MenuButton(root=root, btype='exit')
         self.exit_button.move(width - 20, self.exit_button.pos().y())
@@ -69,8 +74,10 @@ class MenuBar(QtW.QFrame):
         # layout
         self.main_layout = QtW.QHBoxLayout()
         self.main_layout.setAlignment(QtC.Qt.AlignmentFlag.AlignRight)
-        self.main_layout.setContentsMargins(1,1,15,1)
+        self.main_layout.setContentsMargins(0,0,15,0)
+        self.main_layout.setSpacing(650)
         
+        self.main_layout.addWidget(self.brain_logo)
         self.main_layout.addWidget(self.exit_button)
         
         self.setLayout(self.main_layout)
