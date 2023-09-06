@@ -1,7 +1,9 @@
 # Tumor-Detector-demo
 
 ---
-<img src="assets/tumor-detector.gif" height=300px>
+<div align="center">
+  <img src="assets/tumor-detector.gif" height=300px>
+</div>
 
 ## Requerimentos
 - [Docker](https://www.docker.com)
