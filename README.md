@@ -28,7 +28,7 @@ xhost +local:docker
 docker images # busque pelo id da imagem
 ```
 ```
-docker run -n tumor-detector -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix <id-da-imagem>
+docker run --name tumor-detector -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix <id-da-imagem>
 ```
 - 5 - *Inicialize o container nas futuras vezes*
 ```
